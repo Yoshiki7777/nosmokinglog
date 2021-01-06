@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
-  def test
+  def test2
   end
 end
