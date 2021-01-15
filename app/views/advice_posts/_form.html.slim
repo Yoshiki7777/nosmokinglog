@@ -1,0 +1,10 @@
+- if advice_post.errors.present?
+  ul#error_explanation
+    -advice_post.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: advice_post, local: true do |f|
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 5, class: 'form-control', id: 'advice_post_description'
+  = f.submit nil, class: 'btn btn-primary'
