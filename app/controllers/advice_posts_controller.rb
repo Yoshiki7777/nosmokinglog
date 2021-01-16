@@ -24,9 +24,12 @@ before_action :protect_user, only: [:edit, :destroy, :update]
   end
 
   def update
-    advice_post = current_user.advice_posts.find(params[:id])
-    advice_post.update!(advice_post_params)
-    redirect_to advice_posts_url, notice: '投稿を更新しました'
+    @advice_post = current_user.advice_posts.find(params[:id])
+    if @advice_post.update(advice_post_params)
+      redirect_to advice_posts_url, notice: '投稿を更新しました'
+    else
+      render :new
+    end
   end
 
   def create
@@ -52,7 +55,7 @@ before_action :protect_user, only: [:edit, :destroy, :update]
   end
 
   def protect_user
-    unless AdvicePost.find(params[:id]).user.id.to_i == current_user.id
+    unless AdvicePost.find(params[:id]).user.id == current_user.id
       redirect_to advice_posts_path(current_user)
     end
   end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 before_action :correct_user, only: [:edit, :update, :destroy]
-
+skip_before_action :login_required, only: :new
   def index
     @users = User.all
   end
