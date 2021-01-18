@@ -1,0 +1,19 @@
+h1 投稿一覧
+= link_to '新規投稿', new_advice_post_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= AdvicePost.human_attribute_name(:description)
+      th= AdvicePost.human_attribute_name(:created_at)
+      th
+  tbody
+    - @advice_posts.each do |advice_post|
+      tr
+        td= link_to advice_post.description, advice_post
+        td= advice_post.created_at
+        td
+          - if current_user.id == advice_post.user_id
+            = link_to '編集', edit_advice_post_path(advice_post), class: 'btn btn-primary mr-3'
+            = link_to '削除', advice_post, method: :delete, date: { confirm: '投稿を削除します。よろしいですか？' }, class: 'btn btn-danger'

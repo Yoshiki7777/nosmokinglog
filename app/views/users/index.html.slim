@@ -12,12 +12,13 @@ table.table.table-hover
       th= User.human_attribute_name(:updated_at)
       th
   tbody
-    - @user.each do |user|
+    - @users.each do |user|
       tr
         td= link_to user.name, user
         td= user.email
         td= user.created_at
         td= user.updated_at
         td
+        - if current_user.id == user.id
           = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
           = link_to '削除', user, method: :delete, date: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

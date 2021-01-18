@@ -1,0 +1,6 @@
+h1 投稿の新規登録
+
+.nav.justify-content-end
+  = link_to '一覧', advice_posts_path, class: 'nav-link'
+
+= render partial: 'form', locals: { advice_post: @advice_post }

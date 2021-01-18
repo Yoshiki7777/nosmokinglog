@@ -1,0 +1,26 @@
+h1 投稿詳細
+
+.nav.justify-content-end
+  = link_to '一覧', advice_posts_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:name)
+      td= @user.id
+    tr
+      th= AdvicePost.human_attribute_name(:id)
+      td= @advice_post.id
+    tr
+      th= AdvicePost.human_attribute_name(:description)
+      td= @advice_post.description
+    tr
+      th= AdvicePost.human_attribute_name(:created_at)
+      td= @advice_post.created_at
+    tr
+      th= AdvicePost.human_attribute_name(:updated_at)
+      td= @advice_post.updated_at
+      td
+
+        - if current_user.id == @advice_post.user_id
+          = link_to '編集', edit_advice_post_path, class: 'btn btn-primary mr-3'
+          = link_to '削除', @advice_post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？' }, class: 'btn btn-danger'
