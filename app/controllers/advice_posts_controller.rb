@@ -28,7 +28,7 @@ before_action :protect_user, only: [:edit, :destroy, :update]
     if @advice_post.update(advice_post_params)
       redirect_to advice_posts_url, notice: '投稿を更新しました'
     else
-      render :new
+      render :edit
     end
   end
 

@@ -2,7 +2,7 @@ class AdvicePost < ApplicationRecord
   before_validation :set_descriptionless_description
 
   validates :description, presence: true
-  validates :description, length: { maximum: 30 }
+  validates :description, length: { maximum: 100 }
 
   belongs_to :user
 
